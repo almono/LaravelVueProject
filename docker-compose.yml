@@ -65,6 +65,18 @@ services:
     networks:
       - laravel-app-network
 
+  frontend:
+    image: node:18
+    container_name: vue-frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: ["sh", "-c", "npm install && npm run dev"]
+    networks:
+      - laravel-app-network
+
 networks:
   laravel-app-network:
     driver: bridge

@@ -1,6 +1,6 @@
 # Laravel API Template
 
-A template API of Laravel project using MySQL, PHPMyAdmin, Nginx and Mailpit.
+A template API of Laravel project using Vue.js, MySQL, PHPMyAdmin, Nginx and Mailpit.
 
 Additionally Swagger UI has been added for endpoint testing.
 
@@ -12,6 +12,7 @@ To build the project:
 - After that generate APP token with ```php artisan key:generate``` and ```php artisan jwt:secret``` ( might require config clear with ```php artisan config:clear``` )
 
 Your project should be available under these URLs:
+- Frontend http://localhost:5137
 - Laravel http://localhost:8000
 - Swagger UI http://localhost:8000/api/documentation
 - Mailpit http://localhost:8025
@@ -20,6 +21,7 @@ Your project should be available under these URLs:
 
 ## Features
 
+- Vue.js
 - MySQL with PHPMyAdmin
 - Nginx
 - Mailpit
