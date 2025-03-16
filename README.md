@@ -6,9 +6,10 @@ Additionally Swagger UI has been added for endpoint testing.
 
 To build the project:
 - Copy the repository
+- In the main directory run ```composer install```
 - In the main directory run ```docker compose build --no-cache``` and after it has finished building ```docker compose up -d```
 - Inside the php container make sure you run the laravel migrations ```php artisan migrate``` ( ```php artisan migrate:install``` in case the previous did not work )
-- After that generate APP token with ```php artisan jwt:secret```
+- After that generate APP token with ```php artisan key:generate``` and ```php artisan jwt:secret``` ( might require config clear with ```php artisan config:clear``` )
 
 Your project should be available under these URLs:
 - Laravel http://localhost:8000
