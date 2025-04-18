@@ -1,7 +1,7 @@
 <template>
     <div>
       <h2>This is the Home View 🚀</h2>
-      <p>Vue is now running inside Docker with Hot Reload!</p>
+      <p>Vue is now running inside Docker with Hot Reload!2333</p>
     </div>
   </template>
   

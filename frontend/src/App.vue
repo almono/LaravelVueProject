@@ -1,17 +1,13 @@
 <template>
-    <div id="app">
-      <h1>Welcome to Vue in Docker 🐳</h1>
-      <Home />
+    <div id="main-div">
+      <router-view></router-view>
     </div>
   </template>
   
   <script>
-  import Home from "./views/Home.vue";
   
   export default {
-    components: {
-      Home,
-    },
+    components: {},
   };
   </script>
   
