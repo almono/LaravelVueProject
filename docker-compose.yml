@@ -77,6 +77,38 @@ services:
     networks:
       - laravel-app-network
 
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - laravel-app-network
+
+# Redis queue worker
+  queue:
+    build:
+      context: .
+    command: php artisan queue:work
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel-app-network
+    depends_on:
+      - app
+      - redis
+  
+# Redis UI
+  redisinsight:
+    image: redislabs/redisinsight:1.14.0
+    ports:
+      - "8001:8001"
+    depends_on:
+      - redis
+    networks:
+      - laravel-app-network
+
 networks:
   laravel-app-network:
     driver: bridge
@@ -84,3 +116,4 @@ networks:
 volumes:
   dbdata:
     driver: local
+  redis-data:
