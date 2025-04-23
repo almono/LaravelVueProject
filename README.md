@@ -18,6 +18,7 @@ Your project should be available under these URLs:
 - Swagger UI http://localhost:8000/api/documentation
 - Mailpit http://localhost:8025
 - PHPMyAdmin http://localhost:8080 ( user and password are both "laravel" )
+- RedisInsight http://localhost:8001 ( database name  is laravel_api_db and port is 6379 )
 
 
 ## Features

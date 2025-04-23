@@ -81,6 +81,7 @@
             required
           />
         </BCardText>
+        <ValidationErrors :errors="validationErrors"/>
         <div class="col-12 px-0 text-center align-items-center justify-content-center mt-3">
           <BButton class="col-8" pill variant="primary" type="submit" v-if="!requestProcessing">Register</BButton>
           <BButton class="col-8" pill variant="primary" v-else :disabled="true">Processing...</BButton>
@@ -98,11 +99,16 @@ import { BButton, BForm, BFormGroup, BFormInput, BInputGroup, BInputGroupText } 
 import { useAuthStore } from '../../stores/auth/auth'
 import { useToast } from "vue-toastification";
 
+import ValidationErrors from "../../components/Helpers/ValidationErrors.vue";
+
 export default {
   name: "Register",
   setup() {
     const authStore = useAuthStore()
     return { authStore }
+  },
+  components: {
+    ValidationErrors
   },
   data() {
     return {
@@ -122,6 +128,7 @@ export default {
     registerUser() {
       this.errors = null
       this.requestProcessing = true
+      this.validationErrors = null
 
       this.authStore.register({
         username: this.username,
@@ -133,13 +140,11 @@ export default {
         phone: this.phoneNumber
       }).then(response => {
         this.requestProcessing = false
-        console.log(response)
         
-      }, this).catch(error => {
-        if (error.response.status === 422) {
-          this.validationErrors = error.response.data.errors
+        if(response.errors) {
+          this.validationErrors = response.errors
         }
-
+      }, this).catch(error => {
         if (error.status === 401) {
           this.loginError = error.response?.data?.message
           useToast().error(this.loginError)

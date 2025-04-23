@@ -92,7 +92,7 @@ services:
     build:
       context: .
     container_name: redis-queue-worker
-    command: php artisan queue:work
+    command: php artisan queue:work redis
     volumes:
       - .:/var/www
     networks:
