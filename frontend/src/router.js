@@ -3,17 +3,16 @@ import { useAuthStore } from './stores/auth/auth';
 import Home from './views/Home.vue';
 import Login from './views/auth/Login.vue';
 import Register from './views/auth/Register.vue';
+import Dashboard from './views/main/Dashboard.vue';
 
 const routes = [
-  { path: '/', component: Home },
   { path: '/login', component: Login },
-  { path: '/register', component: Register }
-  /*
+  { path: '/register', component: Register },
   { 
-    path: '/dashboard', 
+    path: '/', 
     component: Dashboard,
     meta: { requiresAuth: true }
-  },*/
+  }
 ];
 
 const router = createRouter({
@@ -24,9 +23,9 @@ const router = createRouter({
 router.beforeEach(async (to) => {
   const authStore = useAuthStore();
   await authStore.fetchUser();
-  
+
   if (to.meta.requiresAuth && !authStore.user) {
-    return '/login';
+    return '/login'
   }
 });
 

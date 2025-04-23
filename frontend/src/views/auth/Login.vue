@@ -81,6 +81,7 @@ export default {
     loginUser() {
       this.errors = null
       this.requestProcessing = true
+      this.loginError = null
 
       this.authStore.login({
         email: this.email,
@@ -89,6 +90,8 @@ export default {
         this.requestProcessing = false
         
       }, this).catch(error => {
+        this.requestProcessing = false
+        
         if (error.status === 422) {
           this.validationErrors = error.response.data.errors
         }
@@ -164,7 +167,7 @@ h2 {
 
 .invalid-login-text {
   color: red;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
