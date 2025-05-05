@@ -12,16 +12,17 @@ export const useAuthStore = defineStore('auth', {
   },
   actions: {
     async login(credentials) {
-      await api.get('/sanctum/csrf-cookie') // CSRF protection
-      
-      const response = await api.post('/api/auth/login', credentials)
+      //await api.get('/sanctum/csrf-cookie') // CSRF protection
+      await api.get('/sanctum/csrf-cookie').then(response => {
+          const loginResponse = api.post('/api/auth/login', credentials)
 
-      if(response.status === 200) {
-        this.token = response.data.accessToken
-        this.isAuthenticated = true
-        api.defaults.headers.common["Authorization"] = `Bearer ${this.token}`
-        await this.fetchUser()
-      }
+          if(loginResponse.status === 200) {
+            this.token = loginResponse.data.accessToken
+            this.isAuthenticated = true
+            api.defaults.headers.common["Authorization"] = `Bearer ${this.token}`
+            this.fetchUser()
+          }
+      });
     },
 
     async register(data) {

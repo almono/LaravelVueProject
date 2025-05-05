@@ -66,6 +66,9 @@ services:
       - laravel-app-network
 
   frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     image: node:18
     container_name: vue-frontend
     working_dir: /app
