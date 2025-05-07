@@ -1,18 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from './stores/auth/auth';
-import Home from './views/Home.vue';
 import Login from './views/auth/Login.vue';
 import Register from './views/auth/Register.vue';
 import Dashboard from './views/main/Dashboard.vue';
+import Home from './views/dashboard/Home.vue';
 
 const routes = [
   { path: '/login', component: Login },
   { path: '/register', component: Register },
-  { 
-    path: '/', 
+  {
+    path: '/',
     component: Dashboard,
-    meta: { requiresAuth: true }
-  }
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: '/',
+        name: 'dashboard-home',
+        component: Home,
+      }
+    ],
+  },
 ];
 
 const router = createRouter({
@@ -26,6 +33,10 @@ router.beforeEach(async (to) => {
 
   if (to.meta.requiresAuth && !authStore.user) {
     return '/login'
+  }
+
+  if(!to.meta.requiresAuth && authStore.user) {
+    return '/'
   }
 });
 

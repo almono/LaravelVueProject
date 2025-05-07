@@ -1,12 +1,14 @@
 <template>
     <div>
-      Footer component
+      <!-- Navbar -->
+      NAVBAR HERE
+      <!-- Navbar -->
     </div>
   </template>
   
   <script>
   export default {
-    name: "Footer",
+    name: "ContentNavbar",
   };
   </script>
   

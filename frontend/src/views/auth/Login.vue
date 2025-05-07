@@ -88,6 +88,10 @@ export default {
         password: this.password
       }).then(response => {
         this.requestProcessing = false
+
+        if(response?.status === 200) {
+          this.$router.push('/')
+        }
         
       }, this).catch(error => {
         this.requestProcessing = false

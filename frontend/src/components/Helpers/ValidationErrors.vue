@@ -32,13 +32,6 @@ export default {
 </script>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  text-align: center;
-  padding: 20px;
-}
-
 .validation-field {
   font-weight: 600;
   color: rgb(214, 27, 27);

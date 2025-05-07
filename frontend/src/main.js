@@ -1,12 +1,14 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+
 import App from './App.vue'
 import router from './router'
 
 // BootstrapVue CSS
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+//import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'bootstrap-icons/font/bootstrap-icons.css' // bootstrap icons
 
 // Import BootstrapVueNext components
@@ -29,6 +31,7 @@ app.use(router); // Vue routes
 for (const [key, component] of Object.entries(BootstrapVueNext)) {
     app.component(key, component)
 }
+
 
 // Toast Options
 const options = {
