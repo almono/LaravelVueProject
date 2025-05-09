@@ -29,4 +29,12 @@ class UserService
         $token = $tokenResult->plainTextToken;
         return $token;
     }
+
+    public function grantModuleAccess(int $userId, int $moduleId): void
+    {
+        $user = $this->userRepository->find($userId);
+        if ($user) {
+            $this->userRepository->giveAccessToModule($user, $moduleId);
+        }
+    }
 }

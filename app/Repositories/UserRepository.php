@@ -16,5 +16,15 @@ class UserRepository implements UserRepositoryInterface
     public function registerUser(array $data) : User
     {
         return User::create($data);
-    } 
+    }
+
+    public function find(int $id): ?User
+    {
+        return User::find($id);
+    }
+
+    public function giveAccessToModule(User $user, int $moduleId): void
+    {
+        $user->modules()->syncWithoutDetaching([$moduleId]);
+    }
 }
