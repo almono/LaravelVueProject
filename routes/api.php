@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Resources\UserResource;
+use App\Domains\Auth\Controllers\AuthController;
+use App\Domains\User\Controllers\UserController;
+use App\Domains\User\Resources\UserResource;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
