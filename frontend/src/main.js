@@ -1,3 +1,4 @@
+import api from './api.js';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
@@ -18,6 +19,9 @@ import * as BootstrapVueNext from 'bootstrap-vue-next'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
+// Translations
+import i18n from './i18n';
+
 const app = createApp(App);
 
 //if (import.meta.env.MODE === 'development') {
@@ -31,7 +35,6 @@ app.use(router); // Vue routes
 for (const [key, component] of Object.entries(BootstrapVueNext)) {
     app.component(key, component)
 }
-
 
 // Toast Options
 const options = {
@@ -50,5 +53,19 @@ const options = {
 };
 
 app.use(Toast, options);
+app.use(i18n);
 
-app.mount('#app');
+api.get('/api/translations', {
+    headers: { 'Accept-Language': 'en' }
+}).then(({ data }) => {
+    i18n.global.setLocaleMessage(data.locale, data.messages);
+    i18n.global.locale.value = data.locale;
+
+    // Hide spinner after app and translation load
+    const spinner = document.getElementById('spinner');
+    if (spinner) spinner.style.display = 'none';
+
+    app.mount('#app');
+});
+
+//app.mount('#app');

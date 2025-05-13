@@ -5,13 +5,7 @@
       <BNavbarToggle target="nav-collapse" />
       <BCollapse id="nav-collapse" is-nav>
         <BNavbarNav class="ms-auto mb-2 mb-lg-0">
-          <BNavItemDropdown class="navbar-dropdown" text="Lang" right>
-            <template #button-content>
-              <span class="material-icons">
-                language
-              </span>
-            </template>
-          </BNavItemDropdown>
+          <LanguageIcon />
           <BNavItemDropdown class="navbar-dropdown" text="Notifications" right>
             <template #button-content>
               <span class="material-icons">
@@ -33,6 +27,10 @@
     </BNavbar>
   </div>
 </template>
+
+<script setup>
+import LanguageIcon from './Navbar/LanguageIcon.vue';
+</script>
 
 <script>
 export default {
